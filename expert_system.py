@@ -14,12 +14,12 @@ def main():
     initial_facts = strings_group['initial_facts']
     queries = strings_group['queries']
 
-    graph = Graph(rules, initial_facts)
+    #graph = Graph(rules, initial_facts)
 
 
 
-    for string in initial_facts:
-        print(string.clean_source, string.type)
+    for string in rules:
+        print(string.clean_source, string.tokens)
 
 
 if __name__ == '__main__':

@@ -10,7 +10,8 @@ class TokenAtom:
         '+': lambda x: x == '+',
         '(': lambda x: x == '(',
         ')': lambda x: x == ')',
-        '_': lambda x: x.isalpha() and x.isupper(),
+        '?': lambda x: x == '?',
+        '_': lambda x: (x.isalpha() and x.isupper()) or x == '_',
     }
 
     def __init__(self, letter):
@@ -30,10 +31,4 @@ class TokenAtom:
 
     @classmethod
     def get_atoms_mask_from_string(cls, string):
-        result = []
-        for letter in string:
-            if letter == '_':
-                result.append(cls('A'))
-            else:
-                result.append(cls(letter))
-        return result
+        return [cls(letter) for letter in string]
