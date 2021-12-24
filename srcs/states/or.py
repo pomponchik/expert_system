@@ -1,0 +1,2 @@
+class OrState:
+    pass

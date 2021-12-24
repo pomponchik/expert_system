@@ -43,12 +43,12 @@ class StringsGroup:
             order_unit = self.order[order_index]
             if string_type != order_unit:
                 if order_index == len(self.order) - 1:
-                    goodbye(f'Line {string.index + 1} breaks the order: {string.type.replace("_", " ")} comes after {self.order[-1].replace("_", " ")}.')
+                    goodbye(f'Line {string.index} breaks the order: {string.type.replace("_", " ")} comes after {self.order[-1].replace("_", " ")}.')
                 order_index += 1
                 order_unit = self.order[order_index]
             if string_type != order_unit:
                 if previous_string is not None:
-                    goodbye(f'Line {string.index + 1} breaks the order: {string.type.replace("_", " ")} comes after {previous_string.type.replace("_", " ")}.')
+                    goodbye(f'Line {string.index} breaks the order: {string.type.replace("_", " ")} comes after {previous_string.type.replace("_", " ")}.')
                 else:
-                    goodbye(f'Line {string.index + 1} breaks the order: {string.type.replace("_", " ")} before other types of strings.')
+                    goodbye(f'Line {string.index} breaks the order: {string.type.replace("_", " ")} before other types of strings.')
             previous_string = string

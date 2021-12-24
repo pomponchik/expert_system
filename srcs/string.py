@@ -8,7 +8,7 @@ class String:
     """
     def __init__(self, source, index):
         self.source = source
-        self.index = index
+        self.index = index + 1
         sumbols = list(self.source)
         self.clean_source = self.get_clean_data(sumbols, lambda x: not x).replace(' ', '').replace('\t', '')
         self.comment = self.get_clean_data(sumbols, lambda x: x)

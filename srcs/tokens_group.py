@@ -9,7 +9,8 @@ class TokensGroup:
         try:
             self.tokens = self.separate_tokens(string)
         except Exception as e:
-            goodbye(f'An impossible character or a group of characters was detected in line {string.index + 1}.')
+            raise e
+            goodbye(f'An impossible character or a group of characters was detected in line {string.index}.')
 
     def __len__(self):
         return len(self.tokens)

@@ -1,0 +1,2 @@
+class BoolState:
+    pass

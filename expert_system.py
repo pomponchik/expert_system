@@ -1,6 +1,8 @@
 from sys import argv
+
 from srcs.reader import Reader
 from srcs.goodbye import goodbye
+from srcs.graph.graph import Graph
 
 
 def main():
@@ -14,7 +16,7 @@ def main():
     initial_facts = strings_group['initial_facts']
     queries = strings_group['queries']
 
-    #graph = Graph(rules, initial_facts)
+    graph = Graph(rules, initial_facts)
 
 
 

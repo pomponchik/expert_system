@@ -1,0 +1,2 @@
+class MaybeState:
+    pass

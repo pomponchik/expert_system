@@ -25,11 +25,29 @@ class Token:
                 self.size = len(mark)
                 self.mark = mark
                 self.atoms = string[index:index + self.size]
+                self.type = self.get_type(self.mark)
+                self.source = ''.join([x.source for x in self.atoms])
                 break
 
         if not success:
             raise ValueError('The token is not recognized.')
 
+    def get_type(self, mark):
+        types = {
+            '<=>': 'binary',
+            '=>': 'binary',
+            '!': 'unary',
+            '_': 'named',
+            '|': 'binary',
+            '+': 'binary',
+            '^': 'binary',
+            '(': 'other',
+            ')': 'other',
+            '=': 'other',
+            '?': 'other',
+        }
+        mark_string = ''.join([atom.mark for atom in mark])
+        return types[mark_string]
 
     @staticmethod
     def check_overlay(string, index, string_to_compare):
