@@ -27,10 +27,15 @@ class Token:
                 self.atoms = string[index:index + self.size]
                 self.type = self.get_type(self.mark)
                 self.source = ''.join([x.source for x in self.atoms])
+                self.index = index
+                self.string = string
                 break
 
         if not success:
             raise ValueError('The token is not recognized.')
+
+    def copy(self):
+        return type(self)(self.string, self.index)
 
     def get_type(self, mark):
         types = {

@@ -13,7 +13,12 @@ class Graph:
             expression = Expression(rule.tokens, self, rule)
             if not expression.is_empty():
                 if expression.is_active():
-                    print(expression.block)
+                    for one_expression in expression.clone():
+                        if one_expression.is_solvable():
+                            for simple_expression in one_expression.simplify():
+                                print(simple_expression)
+                                pass
+                                #print(simple_expression.block)
 
     def facts_aware(self, initial_facts):
         pass
