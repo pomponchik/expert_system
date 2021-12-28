@@ -2,6 +2,8 @@ from srcs.variables.named_variable import NamedVariable
 from srcs.variables.operators.unary_operator import UnaryOperator
 from srcs.variables.operators.binary_operator import BinaryOperator
 from srcs.variables.abstract_unit import AbstractUnit
+from srcs.variables.other import OtherUnit
+from srcs.goodbye import goodbye
 
 
 class ExpressionBlock:
@@ -19,6 +21,13 @@ class ExpressionBlock:
 
     def __len__(self):
         return len(self.units)
+
+    def check_others(self):
+        for unit in self.units:
+            if isinstance(unit, OtherUnit):
+                goodbye(f'An incorrect token "{unit.source}" was detected in line {self.string.index}.')
+            if isinstance(unit, type(self)):
+                unit.check_others()
 
     def is_final_or_state(self):
         if len(self) == 3 and isinstance(self.get_first_operand(), NamedVariable) and isinstance(self.get_second_operand(), NamedVariable):

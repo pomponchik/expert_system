@@ -146,6 +146,7 @@ class Expression:
     def create_units(self, tokens, graph, string):
         units = self.convert_tokens_to_units(tokens, graph)
         block = ExpressionBlock(units, string)
+        block.check_others()
         block.cut_breackets()
         block.clean_emptys()
         block.separate_implications()

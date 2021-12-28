@@ -1,6 +1,8 @@
 from srcs.graph.link import Link
 from srcs.graph.fact import Fact
+from srcs.graph.or_state import OrState
 from srcs.goodbye import goodbye
+
 
 
 class Node:
@@ -24,4 +26,21 @@ class Node:
         self.simples.append(link)
 
     def get_value(self):
+        value_from_simples = self.get_value_from_simples()
+        value_from_defaults = self.get_value_from_defaults()
+        if isinstance(value_from_simples, bool):
+            if isinstance(value_from_defaults, bool):
+                if value_from_simples != value_from_defaults:
+                    goodbye()
+            return value_from_simples
+        elif value_from_simples is None:
+            pass
+        elif isinstance(value_from_simples, OrState):
+            pass
+
+
+    def get_value_from_simples(self):
+        pass
+
+    def get_value_from_defaults(self):
         pass
