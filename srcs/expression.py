@@ -22,6 +22,28 @@ class Expression:
             self.string = string
         self.from_expression = from_expression
 
+    def __str__(self):
+        pre_result = []
+        expression = self
+
+        while expression:
+            pre_result.append(str(self.block))
+            expression = expression.from_expression
+
+        result = ' from '.join(pre_result)
+        return result
+
+    def check_tautology(self):
+        left_part = self.block.get_left_part()
+        right_part = self.block.get_right_part()
+
+        left_names = set(left_part.get_variables())
+        right_names = set(right_part.get_variables())
+
+        for letter in right_names:
+            if letter in left_names:
+                goodbye(f'Line {self.string.index} ("{self.string.clean_source}") contains a tautology. The variable {letter} is expressed by itself.')
+
     def is_solvable(self):
         operator = self.block.get_first_operator()
         if isinstance(operator, BinaryOperator) and (operator.source == '=>' or operator.source == '<=>'):
@@ -153,6 +175,8 @@ class Expression:
         block.separate_operations()
         block.remove_extra_blocks()
         block.check_order()
+        block.incapsulate_names()
+        block.clean_emptys()
         return block
 
     def convert_tokens_to_units(self, tokens, graph):
@@ -198,14 +222,3 @@ class Expression:
             expressions.append(self)
 
         return expressions
-
-    def __str__(self):
-        pre_result = []
-        expression = self
-
-        while expression:
-            pre_result.append(str(self.block))
-            expression = expression.from_expression
-
-        result = ' from '.join(pre_result)
-        return result

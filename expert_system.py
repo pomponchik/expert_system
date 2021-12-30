@@ -17,11 +17,12 @@ def main():
     queries = strings_group['queries']
 
     graph = Graph(rules, initial_facts)
+    print(graph.nodes)
 
+    values = graph.get_values(queries)
 
+    print(values)
 
-    for string in rules:
-        print(string.clean_source, string.tokens)
 
 
 if __name__ == '__main__':

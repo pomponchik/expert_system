@@ -22,6 +22,16 @@ class ExpressionBlock:
     def __len__(self):
         return len(self.units)
 
+    def incapsulate_names(self):
+        new_units = []
+        for unit in self.units:
+            if isinstance(unit, NamedVariable):
+                unit = type(self)([unit], self.string)
+            elif isinstance(unit, type(self)):
+                unit.incapsulate_names()
+            new_units.append(unit)
+        self.units = new_units
+
     def check_others(self):
         for unit in self.units:
             if isinstance(unit, OtherUnit):
@@ -66,14 +76,16 @@ class ExpressionBlock:
         return None
 
     def get_right_part(self):
-        if not len(self.units) == 3:
-            return None
-        return self.units[2]
+        if len(self.units) == 3:
+            return self.units[2]
 
     def get_left_part(self):
-        if not len(self.units) == 3:
-            return None
-        return self.units[0]
+        if len(self.units) == 3:
+            return self.units[0]
+        elif len(self.units) == 2:
+            return self.units[1]
+        elif len(self.units) == 1:
+            return self.units[0]
 
     def get_variables(self):
         variables = set()

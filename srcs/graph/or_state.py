@@ -8,3 +8,8 @@ from srcs.expression import Expression
 class OrState:
     block: ExpressionBlock
     expression: Expression
+
+
+@dataclass
+class OrStates:
+    states: list[OrState]
