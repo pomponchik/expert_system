@@ -19,7 +19,9 @@ class ResultInterpreter:
         elif source == 'expression':
             if isinstance(value, bool):
                 converted_expressions = self.convert_expressions(self.graph.get_node(letter).simples)
-                return f'{letter} = {converted_value} (from expression):\n{converted_expressions}'[:-1]
+                if len(self.graph.get_node(letter).simples) == 1:
+                    return f'{letter} = {converted_value} from expression:\n{converted_expressions}'[:-1]
+                return f'{letter} = {converted_value} from expressions:\n{converted_expressions}'[:-1]
             else:
                 return f'{letter} is defined in the following expressions: {converted_value}'
 

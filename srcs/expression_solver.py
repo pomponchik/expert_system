@@ -100,7 +100,6 @@ class ExpressionSolver:
         nones = []
         ors = []
 
-        print(letter, solves)
         for solve in solves:
             if isinstance(solve, bool):
                 bools.append(solve)

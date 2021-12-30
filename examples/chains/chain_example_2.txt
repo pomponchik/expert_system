@@ -1,0 +1,8 @@
+!O => H
+H + H => F
+F | G => B
+!A + B => C
+=
+?C
+
+#TRUE
