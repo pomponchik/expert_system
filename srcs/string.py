@@ -10,7 +10,7 @@ class String:
         self.source = source
         self.index = index + 1
         sumbols = list(self.source)
-        self.clean_source = self.get_clean_data(sumbols, lambda x: not x).replace(' ', '').replace('\t', '')
+        self.clean_source = self.get_clean_data(sumbols, lambda x: not x).replace(' ', '').replace('\t', '').replace('\n', '')
         self.comment = self.get_clean_data(sumbols, lambda x: x)
         self.is_empty = not bool(self.clean_source)
         self.type = self.get_type()

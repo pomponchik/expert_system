@@ -3,6 +3,7 @@ from sys import argv
 from srcs.reader import Reader
 from srcs.goodbye import goodbye
 from srcs.graph.graph import Graph
+from srcs.result_interpreter import ResultInterpreter
 
 
 def main():
@@ -17,11 +18,12 @@ def main():
     queries = strings_group['queries']
 
     graph = Graph(rules, initial_facts)
-    print(graph.nodes)
 
     values = graph.get_values(queries)
 
-    print(values)
+    results = ResultInterpreter(values, graph).get_results()
+    for result in results:
+        print(result)
 
 
 

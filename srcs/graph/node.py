@@ -33,15 +33,15 @@ class Node:
             if isinstance(value_from_facts, bool):
                 if value_from_expression != value_from_facts:
                     goodbye(f'A contradiction has been found for the variable {self.name}.')
-            return value_from_expression, 'expression'
+            return value_from_expression, 'expression', self.name
         elif value_from_expression is None:
             if isinstance(value_from_facts, bool):
-                return value_from_facts, 'facts'
-            return False, 'default'
+                return value_from_facts, 'facts', self.name
+            return False, 'default', self.name
         elif isinstance(value_from_expression, OrStates):
             if isinstance(value_from_facts, bool):
-                return value_from_facts, 'facts'
-            return value_from_expression, 'expression'
+                return value_from_facts, 'facts', self.name
+            return value_from_expression, 'expression', self.name
 
     def get_value_from_expression(self, stops):
         return self.solver.solve(self.name, self.simples, stops)

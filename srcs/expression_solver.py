@@ -1,5 +1,6 @@
 from srcs.graph.or_state import OrState, OrStates
 from srcs.goodbye import goodbye
+from srcs.variables.named_variable import NamedVariable
 
 
 class ExpressionSolver:
@@ -14,7 +15,7 @@ class ExpressionSolver:
             stops = set()
 
         for expression in expressions:
-            expression = expression.expression.block
+            expression = expression.block
             stops.add(letter)
             result = self.solve_one_expression(expression, stops)
             local_solves.append(result)
@@ -22,7 +23,9 @@ class ExpressionSolver:
         return self.choose_solve(local_solves, letter)
 
     def solve_one_expression(self, expression, letters):
-        if len(expression) == 3:
+        if isinstance(expression, NamedVariable):
+            result = self.get_value(expression, letters)
+        elif len(expression) == 3:
             result = self.solve_binary(expression, letters)
         elif len(expression) == 2:
             result = self.solve_unary(expression, letters)
@@ -75,7 +78,7 @@ class ExpressionSolver:
 
 
     def get_value(self, expression, letters):
-        operand_name = expression.get_left_part().source
+        operand_name = expression.get_left_part().source if not isinstance(expression, NamedVariable) else expression.source
 
         if operand_name in self.solves:
             return self.solves[operand_name]
@@ -85,7 +88,7 @@ class ExpressionSolver:
 
         node = self.graph.get_node(operand_name)
 
-        result = node.get_value(stops=letters)
+        result, from_source, letter = node.get_value(stops=letters)
 
         letters.add(operand_name)
         self.solves[operand_name] = result
@@ -97,6 +100,7 @@ class ExpressionSolver:
         nones = []
         ors = []
 
+        print(letter, solves)
         for solve in solves:
             if isinstance(solve, bool):
                 bools.append(solve)
