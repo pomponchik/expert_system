@@ -1,0 +1,5 @@
+X ? Y => Z
+=
+?Z
+
+# An incorrect token "?" was detected in line 1.

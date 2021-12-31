@@ -1,0 +1,6 @@
+A + B => !C
+=ABС
+?C
+
+# An impossible character or a group of characters was detected in line 2.
+# Использована русская буква C.

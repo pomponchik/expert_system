@@ -1,0 +1,5 @@
+G | (A + B) => C + A
+=AB
+?C
+
+# Line 1 ("G|(A+B)=>C+A") contains a tautology. The variable A is expressed by itself.

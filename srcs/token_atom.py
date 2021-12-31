@@ -11,7 +11,7 @@ class TokenAtom:
         '(': lambda x: x == '(',
         ')': lambda x: x == ')',
         '?': lambda x: x == '?',
-        '_': lambda x: (x.isalpha() and x.isupper()) or x == '_',
+        '_': lambda x: (x.isalpha() and x.isupper() and x.isascii()) or x == '_',
     }
 
     def __init__(self, letter):

@@ -1,0 +1,6 @@
+A + B => C
+A + B => !C
+=AB
+?C
+
+# A contradiction has been found for the variable C.

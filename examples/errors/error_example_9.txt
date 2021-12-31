@@ -1,0 +1,6 @@
+A + B => C => V + X
+=
+?X
+
+# Uncertainty in line 1: the implication is duplicated.
+# Двойная импликация без явных приоритетов. Отработает без ошибок, если использовать скобки.

@@ -184,7 +184,7 @@ class Expression:
             'binary': BinaryOperator,
             'unary': UnaryOperator,
             'named': NamedVariable,
-            'other': BinaryOperator,
+            'other': OtherUnit,
         }
         result = []
         for token in tokens:

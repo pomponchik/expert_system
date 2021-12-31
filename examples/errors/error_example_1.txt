@@ -1,0 +1,5 @@
+=AB
+A + B => C
+?C
+
+# Line 2 breaks the order: rules comes after initial facts.

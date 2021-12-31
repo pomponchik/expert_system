@@ -1,0 +1,5 @@
+A B + => C
+=AB
+?C
+
+# Error in line 1: Missing operand for operator "+".

@@ -23,5 +23,4 @@ class Reader:
             return StringsGroup(result)
 
         except Exception as e:
-            raise e
             goodbye('The file could not be opened. There are three interpretations: you are an idiot, you are trying to break the program, or something is wrong with the file for reasons beyond your control.')
