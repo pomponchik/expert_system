@@ -18,9 +18,31 @@ def main():
         runner = ConsoleRunner(' >>> ')
         interpretator = Interpretator(runner)
         graph = Graph([], [])
+        aliases = {}
 
         @interpretator()
         def responder(string, string_number, context):
+            if string.strip().startswith('ALIAS '):
+                string = string.strip()[5:].strip()
+                splitted = string.split('=')
+                if len(splitted) != 2:
+                    goodbye('Invalid alias format.')
+                left = splitted[0].strip()
+                right = splitted[1].strip()
+                if not left or not right:
+                    goodbye('Invalid alias format.')
+                if len(left) > 1:
+                    goodbye('Invalid alias format.')
+                if (right[0] != right[-1]) or (right[0] != '"') or (right == '""'):
+                    goodbye('Invalid alias format.')
+                if not left.isalpha() or not left.isupper():
+                    goodbye('Invalid alias format.')
+                aliases[left] = right
+                return 'alias added'
+
+            for alias, value in aliases.items():
+                string = string.replace(value, alias)
+
             strings = StringsGroup([String(string, string_number)], check_order=False)
 
             rules = strings['rules']
