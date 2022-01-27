@@ -4,12 +4,11 @@ from srcs.variables.named_variable import NamedVariable
 
 
 class ExpressionSolver:
-    solves = {}
-
     def __init__(self, graph):
         self.graph = graph
 
     def solve(self, letter, expressions, stops):
+        self.solves = {}
         local_solves = []
         if stops is None:
             stops = set()
@@ -52,7 +51,7 @@ class ExpressionSolver:
             '=>': lambda x, y: not (x and (not y)),
             '<=>': lambda x, y: x == y,
         }
-        
+
         action = actions[operator]
         result = action(left_operand, right_operand)
         return result
