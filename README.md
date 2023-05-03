@@ -80,7 +80,6 @@ A + B <=> C # A and B if and only if C
 
 - [Токенизация](https://en.wikipedia.org/wiki/Lexical_analysis).
 - Создание [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
-- Преобразование AST в [семантический граф](https://en.wikipedia.org/wiki/Abstract_semantic_graph).
 
 
 ## Формат вывода
